@@ -20,6 +20,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Person.PersonName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Person.PersonName)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.ExpenseName)
         </dt>
 
@@ -33,14 +41,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.ExpenseAmount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PersonId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PersonId)
         </dd>
 
     </dl>

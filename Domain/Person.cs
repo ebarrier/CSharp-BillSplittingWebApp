@@ -14,9 +14,13 @@ namespace Domain
         [Required]
         public string PersonName { get; set; }
 
+        [Required]
+        public int EventId { get; set; }
         public virtual Event Event { get; set; }
 
-        public virtual ICollection<ExpenseShare> ExpenseShares { get; set; }
+        public virtual List<ExpenseShare> ExpenseShares { get; set; }
+
+        public virtual List<Expense> Expenses { get; set; }
 
     }
 }

@@ -10,12 +10,13 @@ namespace Domain
 {
     public class ExpenseShare
     {
-        [Key]
-        [Column(Order = 1)]
+
+        public int ExpenseShareId { get; set; }
+
+        [Required]
         public int PersonId { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
+        [Required]
         public int ExpenseId { get; set; }
 
         public virtual Person Person { get; set; }

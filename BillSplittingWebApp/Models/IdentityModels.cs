@@ -33,6 +33,16 @@ namespace BillSplittingWebApp.Models
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            modelBuilder.Entity<Person>()
+                .HasRequired(p => p.Event)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ExpenseShare>()
+                .HasRequired(es => es.Person)
+                .WithMany()
+                .WillCascadeOnDelete(false);
         }
 
         public static ApplicationDbContext Create()

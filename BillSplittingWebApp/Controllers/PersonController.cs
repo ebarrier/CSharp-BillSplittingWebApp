@@ -18,7 +18,8 @@ namespace BillSplittingWebApp.Controllers
         // GET: Person
         public ActionResult Index()
         {
-            return View(db.Persons.ToList());
+            var persons = db.Persons.Include(p => p.Event);
+            return View(persons.ToList());
         }
 
         // GET: Person/Details/5
@@ -39,6 +40,7 @@ namespace BillSplittingWebApp.Controllers
         // GET: Person/Create
         public ActionResult Create()
         {
+            ViewBag.EventId = new SelectList(db.Events, "EventId", "EventName");
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace BillSplittingWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PersonId,PersonName")] Person person)
+        public ActionResult Create([Bind(Include = "PersonId,PersonName,EventId")] Person person)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +58,7 @@ namespace BillSplittingWebApp.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.EventId = new SelectList(db.Events, "EventId", "EventName", person.EventId);
             return View(person);
         }
 
@@ -71,6 +74,7 @@ namespace BillSplittingWebApp.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.EventId = new SelectList(db.Events, "EventId", "EventName", person.EventId);
             return View(person);
         }
 
@@ -79,7 +83,7 @@ namespace BillSplittingWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PersonId,PersonName")] Person person)
+        public ActionResult Edit([Bind(Include = "PersonId,PersonName,EventId")] Person person)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +91,7 @@ namespace BillSplittingWebApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.EventId = new SelectList(db.Events, "EventId", "EventName", person.EventId);
             return View(person);
         }
 

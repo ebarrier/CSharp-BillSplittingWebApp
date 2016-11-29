@@ -15,13 +15,13 @@
             @Html.DisplayNameFor(model => model.Event.EventName)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Person.PersonName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ExpenseName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ExpenseAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PersonId)
         </th>
         <th></th>
     </tr>
@@ -32,13 +32,13 @@
             @Html.DisplayFor(modelItem => item.Event.EventName)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Person.PersonName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.ExpenseName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ExpenseAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PersonId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ExpenseId }) |

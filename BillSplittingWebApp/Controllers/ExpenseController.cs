@@ -18,7 +18,7 @@ namespace BillSplittingWebApp.Controllers
         // GET: Expense
         public ActionResult Index()
         {
-            var expenses = db.Expenses.Include(e => e.Event);
+            var expenses = db.Expenses.Include(e => e.Event).Include(e => e.Person);
             return View(expenses.ToList());
         }
 
@@ -41,6 +41,7 @@ namespace BillSplittingWebApp.Controllers
         public ActionResult Create()
         {
             ViewBag.EventId = new SelectList(db.Events, "EventId", "EventName");
+            ViewBag.PersonId = new SelectList(db.Persons, "PersonId", "PersonName");
             return View();
         }
 
@@ -59,6 +60,7 @@ namespace BillSplittingWebApp.Controllers
             }
 
             ViewBag.EventId = new SelectList(db.Events, "EventId", "EventName", expense.EventId);
+            ViewBag.PersonId = new SelectList(db.Persons, "PersonId", "PersonName", expense.PersonId);
             return View(expense);
         }
 
@@ -75,6 +77,7 @@ namespace BillSplittingWebApp.Controllers
                 return HttpNotFound();
             }
             ViewBag.EventId = new SelectList(db.Events, "EventId", "EventName", expense.EventId);
+            ViewBag.PersonId = new SelectList(db.Persons, "PersonId", "PersonName", expense.PersonId);
             return View(expense);
         }
 
@@ -92,6 +95,7 @@ namespace BillSplittingWebApp.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.EventId = new SelectList(db.Events, "EventId", "EventName", expense.EventId);
+            ViewBag.PersonId = new SelectList(db.Persons, "PersonId", "PersonName", expense.PersonId);
             return View(expense);
         }
 

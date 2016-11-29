@@ -15,7 +15,7 @@ namespace Domain
         [Required]
         public string EventName { get; set; }
 
-        public virtual ICollection<Expense> Expenses { get; set; }
+        public virtual List<Expense> Expenses { get; set; }
 
     }
 }
